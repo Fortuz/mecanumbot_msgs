@@ -13,19 +13,26 @@ find_package(ament_cmake REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
-
 ################################################################################
 # Declare ROS messages, services and actions
 ################################################################################
 set(msg_files
-  "msg/SensorState.msg"
-  "msg/AccessMotorCmd.msg"
-  "msg/OpenCRState.msg"
+    "msg/AccessMotorCmd.msg"
+    "msg/ActionDescriptor.msg"
+    "msg/ActionTuple.msg"
+    "msg/ButtonEvent.msg"
+    "msg/ControllerStatus.msg"
+    "msg/JoystickEvent.msg"
+    "msg/OpenCRState.msg"
+    "msg/SensorState.msg"
 )
 
 set(srv_files
   "srv/GetLedStatus.srv"
   "srv/SetLedStatus.srv"
+  "srv/RegisterAction.srv"
+  "srv/SyncActions.srv"
+  "srv/SyncMappings.srv"
 )
 
 #set(action_files
