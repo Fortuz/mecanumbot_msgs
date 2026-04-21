@@ -13,26 +13,35 @@ find_package(ament_cmake REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
+
 ################################################################################
 # Declare ROS messages, services and actions
 ################################################################################
 set(msg_files
-    "msg/AccessMotorCmd.msg"
-    "msg/ActionDescriptor.msg"
-    "msg/ActionTuple.msg"
-    "msg/ButtonEvent.msg"
-    "msg/ControllerStatus.msg"
-    "msg/JoystickEvent.msg"
-    "msg/OpenCRState.msg"
-    "msg/SensorState.msg"
+  "msg/SensorState.msg"
+  "msg/AccessMotorCmd.msg"
+  "msg/OpenCRState.msg"
+  "msg/ButtonEvent.msg"
+  "msg/JoystickEvent.msg"
+  "msg/ControllerStatus.msg"
+  "msg/ActionTuple.msg"
+  "msg/ActionDescriptor.msg"
 )
 
 set(srv_files
   "srv/GetLedStatus.srv"
   "srv/SetLedStatus.srv"
-  "srv/RegisterAction.srv"
-  "srv/SyncActions.srv"
-  "srv/SyncMappings.srv"
+  "srv/GetRobotActions.srv"
+  "srv/GetMappingNames.srv"
+  "srv/GetMappingDetails.srv"
+  "srv/SaveMapping.srv"
+  "srv/DeleteRobotMapping.srv"
+  "srv/ApplyMapping.srv"
+  "srv/SaveRobotAction.srv"
+  "srv/DeleteRobotAction.srv"
+  "srv/GetRecordingSchemes.srv"
+  "srv/SaveRecordingScheme.srv"
+  "srv/DeleteRecordingScheme.srv"
 )
 
 #set(action_files
