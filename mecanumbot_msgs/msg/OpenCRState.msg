@@ -28,6 +28,11 @@ int16 acc_fr
 int16 pos_n  
 int16 pos_gl  
 int16 pos_gr  
+# wheel error states
+int16 err_bl
+int16 err_br
+int16 err_fl
+int16 err_fr
 #sensory data
 float32 battery_voltage  
  #IMU data
