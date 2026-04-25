@@ -9,3 +9,4 @@ bool success
 string[] action_names
 string[] action_types
 string[] actions_json
+string message
