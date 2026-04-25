@@ -42,6 +42,7 @@ set(srv_files
   "srv/GetRecordingSchemes.srv"
   "srv/SaveRecordingScheme.srv"
   "srv/DeleteRecordingScheme.srv"
+  "srv/GetActionUsages.srv"
 )
 
 #set(action_files
