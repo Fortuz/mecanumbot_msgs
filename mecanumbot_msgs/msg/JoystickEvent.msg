@@ -1,5 +1,5 @@
 # JoystickEvent.msg
-# Published on /xbox_controller/joystick_events by xbox_controller_node.
+# Published on /controller/joystick_events by controller_node.
 # Replaces the std_msgs/String + JSON encoding.
 
 string joystick_name  # "Left Stick" | "Right Stick" | "Left Trigger (LT)" | "Right Trigger (RT)"

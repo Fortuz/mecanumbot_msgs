@@ -1,5 +1,5 @@
 # ButtonEvent.msg
-# Published on /xbox_controller/button_events by xbox_controller_node.
+# Published on /controller/button_events by controller_node.
 # Replaces the std_msgs/String + JSON encoding.
 
 string event        # PRESSED | HOLD | RELEASED

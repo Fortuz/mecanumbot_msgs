@@ -1,5 +1,5 @@
 # ControllerStatus.msg
-# Published on /xbox_controller/connection_status by xbox_controller_node.
+# Published on /controller/connection_status by controller_node.
 # Replaces the std_msgs/String + JSON encoding.
 
 bool    connected             # true if a joy message was received within the last 3 s
