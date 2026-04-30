@@ -1,8 +1,8 @@
 # ControllerStatus.msg
 # Published on /controller/connection_status by controller_node.
-# Replaces the std_msgs/String + JSON encoding.
+# The node publishes this on every /joy callback, so reception of this
+# message implicitly means the controller is connected.
+# Disconnection is detected by docker_node's _controller_watchdog when
+# this topic goes silent.
 
-bool    connected             # true if a joy message was received within the last 3 s
-string  controller_type       # e.g. "Xbox 360"
-float32 time_since_last_input # seconds since the last /joy message
-int32   timestamp             # ROS clock seconds
+string  controller_type  # detected layout, e.g. "Controller 360" or "Generic Controller"
