@@ -21,6 +21,10 @@ set(msg_files
   "msg/SensorState.msg"
   "msg/AccessMotorCmd.msg"
   "msg/OpenCRState.msg"
+  "msg/SimActor.msg"
+  "msg/SimActorArray.msg"
+  "msg/SimBehaviorEvaluation.msg"
+  "msg/SimDetectionEvaluation.msg"
 )
 
 set(srv_files
