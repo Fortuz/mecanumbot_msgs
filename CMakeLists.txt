@@ -45,7 +45,11 @@ set(srv_files
   "srv/DeleteRobotAction.srv"
   "srv/GetRecordingSchemes.srv"
   "srv/SaveRecordingScheme.srv"
+<<<<<<< HEAD:CMakeLists.txt
   "srv/DeleteRecordingScheme.srv"
+=======
+  "srv/DeleteRecordingScheme.srv"
+>>>>>>> 116ba28b563f61c8a5d1c57f34291689a2d44666:mecanumbot_msgs/CMakeLists.txt
   "srv/GetActionUsages.srv"
 )
 

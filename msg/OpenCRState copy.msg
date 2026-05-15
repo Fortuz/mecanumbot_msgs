@@ -28,6 +28,14 @@ int16 acc_fr
 int16 pos_n  
 int16 pos_gl  
 int16 pos_gr  
+<<<<<<< HEAD:msg/OpenCRState copy.msg
+# wheel error states
+int16 err_bl
+int16 err_br
+int16 err_fl
+int16 err_fr
+=======
+>>>>>>> 116ba28b563f61c8a5d1c57f34291689a2d44666:mecanumbot_msgs/msg/OpenCRState copy.msg
 #sensory data
 float32 battery_voltage  
  #IMU data
