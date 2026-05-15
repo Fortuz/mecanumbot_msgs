@@ -26,6 +26,10 @@ set(msg_files
   "msg/ControllerStatus.msg"
   "msg/ActionTuple.msg"
   "msg/ActionDescriptor.msg"
+  "msg/SimActor.msg"
+  "msg/SimActorArray.msg"
+  "msg/SimBehaviorEvaluation.msg"
+  "msg/SimDetectionEvaluation.msg"
 )
 
 set(srv_files

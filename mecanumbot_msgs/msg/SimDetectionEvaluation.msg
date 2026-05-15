@@ -1,0 +1,15 @@
+std_msgs/Header header
+string scenario_name
+bool detection_available
+bool raw_detection_available
+bool subject_tracking_ok
+bool false_wall_lock
+bool wrong_human_lock
+int32 raw_detection_count
+int32 nearest_actor_id
+string nearest_actor_name
+string nearest_actor_kind
+float32 nearest_actor_distance
+float32 subject_error
+float32 nearest_wall_distance
+string status
