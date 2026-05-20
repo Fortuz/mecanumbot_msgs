@@ -30,8 +30,11 @@ set(msg_files
   "msg/SimActorArray.msg"
   "msg/SimBehaviorEvaluation.msg"
   "msg/SimDetectionEvaluation.msg"
+<<<<<<< HEAD:mecanumbot_msgs/CMakeLists.txt
   "msg/AudioInfo.msg"
   "msg/AudioData.msg"
+=======
+>>>>>>> 3a49c9282d589d573ce74d2b4e1b690996578310:CMakeLists.txt
 )
 
 set(srv_files
