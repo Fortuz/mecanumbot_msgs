@@ -30,6 +30,8 @@ set(msg_files
   "msg/SimActorArray.msg"
   "msg/SimBehaviorEvaluation.msg"
   "msg/SimDetectionEvaluation.msg"
+  "msg/AudioInfo.msg"
+  "msg/AudioData.msg"
 )
 
 set(srv_files
