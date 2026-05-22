@@ -34,7 +34,7 @@ int16 err_br
 int16 err_fl
 int16 err_fr
 # distance measure
-int16 dmc
+float32 dms
 #sensory data
 float32 battery_voltage  
  #IMU data
