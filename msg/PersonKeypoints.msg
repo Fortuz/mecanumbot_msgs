@@ -1,0 +1,17 @@
+geometry_msgs/Pose nose
+geometry_msgs/Pose left_eye
+geometry_msgs/Pose right_eye
+geometry_msgs/Pose left_ear
+geometry_msgs/Pose right_ear
+geometry_msgs/Pose left_shoulder
+geometry_msgs/Pose right_shoulder
+geometry_msgs/Pose left_elbow
+geometry_msgs/Pose right_elbow
+geometry_msgs/Pose left_wrist
+geometry_msgs/Pose right_wrist
+geometry_msgs/Pose left_hip
+geometry_msgs/Pose right_hip
+geometry_msgs/Pose left_knee
+geometry_msgs/Pose right_knee
+geometry_msgs/Pose left_ankle
+geometry_msgs/Pose right_ankle

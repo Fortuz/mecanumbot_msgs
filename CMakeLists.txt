@@ -18,7 +18,6 @@ find_package(geometry_msgs REQUIRED)
 # Declare ROS messages, services and actions
 ################################################################################
 set(msg_files
-  "msg/SensorState.msg"
   "msg/AccessMotorCmd.msg"
   "msg/OpenCRState.msg"
   "msg/ButtonEvent.msg"
@@ -26,12 +25,18 @@ set(msg_files
   "msg/ControllerStatus.msg"
   "msg/ActionTuple.msg"
   "msg/ActionDescriptor.msg"
+
   "msg/SimActor.msg"
   "msg/SimActorArray.msg"
   "msg/SimBehaviorEvaluation.msg"
   "msg/SimDetectionEvaluation.msg"
+
   "msg/AudioInfo.msg"
   "msg/AudioData.msg"
+
+  "msg/PersonKeypoints.msg"
+  "msg/CamPersonDetection.msg"
+  "msg/CamPersonDetectionArray.msg"
 )
 
 set(srv_files
