@@ -20,12 +20,6 @@ find_package(geometry_msgs REQUIRED)
 set(msg_files
   "msg/AccessMotorCmd.msg"
   "msg/OpenCRState.msg"
-  "msg/ButtonEvent.msg"
-  "msg/JoystickEvent.msg"
-  "msg/ControllerStatus.msg"
-  "msg/ActionTuple.msg"
-  "msg/ActionDescriptor.msg"
-
   "msg/SimActor.msg"
   "msg/SimActorArray.msg"
   "msg/SimBehaviorEvaluation.msg"
@@ -42,18 +36,6 @@ set(msg_files
 set(srv_files
   "srv/GetLedStatus.srv"
   "srv/SetLedStatus.srv"
-  "srv/GetRobotActions.srv"
-  "srv/GetMappingNames.srv"
-  "srv/GetMappingDetails.srv"
-  "srv/SaveMapping.srv"
-  "srv/DeleteRobotMapping.srv"
-  "srv/ApplyMapping.srv"
-  "srv/SaveRobotAction.srv"
-  "srv/DeleteRobotAction.srv"
-  "srv/GetRecordingSchemes.srv"
-  "srv/SaveRecordingScheme.srv"
-  "srv/DeleteRecordingScheme.srv"
-  "srv/GetActionUsages.srv"
 )
 
 #set(action_files
