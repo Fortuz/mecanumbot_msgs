@@ -31,6 +31,13 @@ set(msg_files
   "msg/PersonKeypoints.msg"
   "msg/CamPersonDetection.msg"
   "msg/CamPersonDetectionArray.msg"
+
+  # The robot <-> server link for the Deep3R seeking system: the comparison
+  # verdict that comes back from the server, and the modelled SEEKING circuit
+  # the seek behaviour tree publishes for the record.
+  "msg/MapCloudAgreement.msg"
+  "msg/SeekingState.msg"
+  "msg/SeekAlert.msg"
 )
 
 set(srv_files
