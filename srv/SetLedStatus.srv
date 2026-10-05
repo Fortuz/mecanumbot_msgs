@@ -6,6 +6,10 @@ int8 br_mode
 int8 br_color
 int8 bl_mode
 int8 bl_color
+# Progress fill, the same on all four panels: how many of a panel's 8 LEDs are
+# shown in progress_color instead of the panel's own color. 0 is no fill.
+int8 progress
+int8 progress_color
 ---
 bool success
 string message

@@ -1,9 +1,10 @@
 # mecanumbot_msgs
 
 ROS 2 interface package for the mecanumbot. It contains only message and service
-definitions — no nodes. Every other package in the workspace
-(`mecanumbot`, `mecanumbot_behaviours`, `mecanumbot_camera`, `mecanumbot_remote`,
-`mecanumbot_sensorprocess_smart`) depends on this package for its custom types.
+definitions — no nodes. The other repos in the workspace
+(`mecanumbot`, `mecanumbot_behaviours`, `mecanumbot_remote`, `mecanumbot_server`,
+`mecanumbot_sensorprocess_smart`) depend on this package for their custom types;
+the legacy Pi `mecanumbot_camera` repo does not use it.
 
 Build type is `ament_cmake` with `rosidl_generate_interfaces`; generated types are
 available in C++ (`mecanumbot_msgs/msg/...hpp`) and Python
@@ -48,23 +49,23 @@ automatically.
 
 | Message | Function | Used by |
 | --- | --- | --- |
-| `OpenCRState.msg` | Full telemetry frame from the OpenCR board: goal/measured wheel velocities, positions, currents and accelerations, per-wheel error states, neck and grabber goal positions, DMS distance measure, battery voltage, and 9-axis IMU data (angular velocity, linear acceleration, magnetometer, orientation quaternion). | `mecanumbot_core` |
-| `AccessMotorCmd.msg` | Goal positions for the accessory servos: neck (`n_pos`), left grabber (`gl_pos`), right grabber (`gr_pos`). | `mecanumbot_core`, `mecanumbot_monitor`, `mecanumbot_teleop`, behaviour packages |
+| `OpenCRState.msg` | Full telemetry frame from the OpenCR board: goal/measured wheel velocities, positions, currents and accelerations, per-wheel error states, neck and grabber goal positions, DMS distance measure, battery voltage, and 9-axis IMU data (angular velocity, linear acceleration, magnetometer, orientation quaternion). | `mecanumbot_core`, `mecanumbot_sim`, `mecanumbot_sensorprocess_smart` (neck position for ball ranging), `mecanumbot_deep3r` (neck position) |
+| `AccessMotorCmd.msg` | Goal positions for the accessory servos: neck (`n_pos`), left grabber (`gl_pos`), right grabber (`gr_pos`). | `mecanumbot_core`, `mecanumbot_monitor`, `mecanumbot_teleop`, `mecanumbot_joy`, `mecanumbot_web`, `mecanumbot_sim`, behaviour packages |
 
 ### Audio
 
 | Message | Function | Used by |
 | --- | --- | --- |
-| `AudioInfo.msg` | Stream description: channel count, sample rate, sample subtype and stream UUID. | `mecanumbot_audio` |
+| `AudioInfo.msg` | Stream description: channel count, sample rate, sample subtype and stream UUID. | nothing at present (`mecanumbot_audio` publishes only `AudioData`) |
 | `AudioData.msg` | A block of `float32` audio samples. | `mecanumbot_audio` |
 
 ### People detection
 
 | Message | Function | Used by |
 | --- | --- | --- |
-| `PersonKeypoints.msg` | The 17 COCO pose keypoints (nose, eyes, ears, shoulders, elbows, wrists, hips, knees, ankles) as `geometry_msgs/Pose`. | `mecanumbot_sensorprocess_smart` |
+| `PersonKeypoints.msg` | The 17 COCO pose keypoints (nose, eyes, ears, shoulders, elbows, wrists, hips, knees, ankles) as `geometry_msgs/Pose`. | `mecanumbot_sensorprocess_smart`, `mecanumbot_ostensive_behaviour` |
 | `CamPersonDetection.msg` | One detected person: keypoints plus right/left angular bounds (`bound_angle_min`/`bound_angle_max`) and a type string. `mecanumbot_onboard_cam_detect_people` sets `type` to `full_body` or `close_range` — the latter meaning the person is near enough that the shin-height camera framed their legs only, so the upper-body keypoints are outside the image rather than merely undetected. `mecanumbot_cam_detect_people` leaves it empty. | `mecanumbot_sensorprocess_smart` |
-| `CamPersonDetectionArray.msg` | Stamped array of `CamPersonDetection`, published on `cam_people_detections`. | `mecanumbot_sensorprocess_smart` |
+| `CamPersonDetectionArray.msg` | Stamped array of `CamPersonDetection`, published on `cam_people_detections`. | `mecanumbot_sensorprocess_smart`, `mecanumbot_ostensive_behaviour` |
 
 ### The Deep3R seeking system
 
@@ -75,7 +76,7 @@ standard message cannot say.
 
 | Message | Function | Used by |
 | --- | --- | --- |
-| `MapCloudAgreement.msg` | The server's verdict on comparing the robot's 2D occupancy grid against the Deep3R point cloud: how much of each source the other accounts for, how many cells they disagree about, and — per uncertain region — its map-frame centre, score, **kind** (`cloud_only` / `map_only` / `unobserved` / `disagreement`), **height** and radius. The kind and the height are what make it actionable: a `cloud_only` region 0.10 m tall is a step the lidar plane passed over and becomes a nav2 keepout, one 0.75 m tall is a table the robot drives under. Everything positional is in the robot's own `map` frame, because the server owns the alignment and the robot never reasons in a frame that drifts under it. | `mecanumbot_custom_nav2` |
+| `MapCloudAgreement.msg` | The server's verdict on comparing the robot's 2D occupancy grid against the Deep3R point cloud: how much of each source the other accounts for, how many cells they disagree about, and — per uncertain region — its map-frame centre, score, **kind** (`cloud_only` / `map_only` / `unobserved` / `disagreement`), **height** and radius. The kind and the height are what make it actionable: a `cloud_only` region 0.10 m tall is a step the lidar plane passed over and becomes a nav2 keepout, one 0.75 m tall is a table the robot drives under. Everything positional is in the robot's own `map` frame, because the server owns the alignment and the robot never reasons in a frame that drifts under it. | `mecanumbot_deep3r` (receives it from the server), `mecanumbot_custom_nav2`, `mecanumbot_autoslam` |
 | `SeekingState.msg` | The modelled SEEKING circuit as the seek tree computes it: short-term `arousal`, medium-term `expectancy`, whether the object is in sight, seconds since the last incentive event, the current search radius and the phase (`undirected` / `directed` / `approach` / `consummatory` / `extinguished`). Published every tick so a trial can be replayed against what the robot was doing and why. | `mecanumbot_seek` |
 | `SeekAlert.msg` | The robot found the thing it was sent for and cannot have it: what it was, where, **how high**, why (`too_high` / `too_low` / `no_route` / `grip_failed` / `lost`), whether a person was found and shown it, where they stood, and how many times the showing gesture completed. One per episode that ends that way, **including the ones with nobody to tell** — that is an outcome, not a reason to publish nothing. The height is the field the 2D map cannot supply and is what separates "on a table" from "behind something". | `mecanumbot_seek` |
 
@@ -83,10 +84,10 @@ standard message cannot say.
 
 | Message | Function | Used by |
 | --- | --- | --- |
-| `SimActor.msg` | A simulated actor: id, name, kind, whether it is the tracked subject, LiDAR visibility, pose and twist. | `mecanumbot_core` |
-| `SimActorArray.msg` | Stamped array of `SimActor` for a named scenario. | `mecanumbot_core` |
-| `SimBehaviorEvaluation.msg` | Per-scenario behaviour verdict: command availability, motion and target validity, unsafe-motion / proximity / wall-proximity / wrong-target / stale-detection flags, commanded speed, subject and nearest-actor/wall/human distances, plus `status` and `reason`. | `mecanumbot_core` |
-| `SimDetectionEvaluation.msg` | Per-scenario detection verdict: detection availability, subject tracking state, false-wall and wrong-human lock flags, raw detection count, nearest actor id/name/kind/distance, subject error, nearest wall distance and `status`. | `mecanumbot_core` |
+| `SimActor.msg` | A simulated actor: id, name, kind, whether it is the tracked subject, LiDAR visibility, pose and twist. | `mecanumbot_sim` |
+| `SimActorArray.msg` | Stamped array of `SimActor` for a named scenario. | `mecanumbot_sim` |
+| `SimBehaviorEvaluation.msg` | Per-scenario behaviour verdict: command availability, motion and target validity, unsafe-motion / proximity / wall-proximity / wrong-target / stale-detection flags, commanded speed, subject and nearest-actor/wall/human distances, plus `status` and `reason`. | `mecanumbot_sim` |
+| `SimDetectionEvaluation.msg` | Per-scenario detection verdict: detection and raw-detection availability, subject tracking state, false-wall and wrong-human lock flags, raw detection count, nearest actor id/name/kind/distance, subject error, nearest wall distance and `status`. | `mecanumbot_sim` |
 
 ## Services
 
@@ -98,7 +99,7 @@ README.
 
 | Service | Request | Response |
 | --- | --- | --- |
-| `SetLedStatus.srv` | `mode`/`color` per panel (`fl`, `fr`, `br`, `bl`). | `success`, `message` |
+| `SetLedStatus.srv` | `mode`/`color` per panel (`fl`, `fr`, `br`, `bl`), plus `progress` (0–8: LEDs per panel drawn in `progress_color` instead of the panel's own colour; 0 is no fill). | `success`, `message` |
 | `GetLedStatus.srv` | empty | Current `mode`/`color` per panel. |
 
 ## Repository layout
