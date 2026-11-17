@@ -33,7 +33,7 @@ int16 err_bl
 int16 err_br
 int16 err_fl
 int16 err_fr
-# distance measure
+# gripper distance (VL53L0X) [cm]; -1 = no valid reading, -2 = sensor not initialised
 float32 dms
 #sensory data
 float32 battery_voltage  

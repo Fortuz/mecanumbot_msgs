@@ -49,7 +49,7 @@ automatically.
 
 | Message | Function | Used by |
 | --- | --- | --- |
-| `OpenCRState.msg` | Full telemetry frame from the OpenCR board: goal/measured wheel velocities, positions, currents and accelerations, per-wheel error states, neck and grabber goal positions, DMS distance measure, battery voltage, and 9-axis IMU data (angular velocity, linear acceleration, magnetometer, orientation quaternion). | `mecanumbot_core`, `mecanumbot_sim`, `mecanumbot_sensorprocess_smart` (neck position for ball ranging), `mecanumbot_deep3r` (neck position) |
+| `OpenCRState.msg` | Full telemetry frame from the OpenCR board: goal/measured wheel velocities, positions, currents and accelerations, per-wheel error states, neck and grabber goal positions, gripper distance (`dms`, VL53L0X, cm; `-1` no valid reading, `-2` sensor not initialised), battery voltage, and 9-axis IMU data (angular velocity, linear acceleration, magnetometer, orientation quaternion). | `mecanumbot_core`, `mecanumbot_sim`, `mecanumbot_sensorprocess_smart` (neck position for ball ranging), `mecanumbot_deep3r` (neck position) |
 | `AccessMotorCmd.msg` | Goal positions for the accessory servos: neck (`n_pos`), left grabber (`gl_pos`), right grabber (`gr_pos`). | `mecanumbot_core`, `mecanumbot_monitor`, `mecanumbot_teleop`, `mecanumbot_joy`, `mecanumbot_web`, `mecanumbot_sim`, behaviour packages |
 
 ### Audio
